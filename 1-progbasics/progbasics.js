@@ -8,7 +8,7 @@
 
 //01/01. Structuring Data
 {
-    console.log("\n\n01/01. Structuring Data");
+    console.log("01/01. Structuring Data");
     let randomString="Random String";   //string variable
     let randomBoolean=false;    //boolean variable
     const birthYear=1998;   //constant
@@ -110,23 +110,48 @@
 
 //01/03. 1st Teamwork
 {
-    //console.log("\n\n01/03. 1st Teamwork");
-    /*
-    using a temporary variable to overwrite something
-    let ourTeam={...,members[{...,codingLevel:10},{...,codingLevel:20}...]};
-    ...
+    console.log("\n\n01/03. 1st Teamwork");
+
+    //data
+    let ourTeam={members:[
+        {
+            name:"Dani",
+            codingLevel:10,
+            birthday:{
+                year:1998,
+                month:5,
+                day:11,
+            },
+        },
+        {
+            name:"Sanyi",
+            codingLevel:20,
+            birthday:{
+                year:1996,
+                month:2,
+                day:13,
+            },
+        },
+        ],
+    };
+
+    //using a temporary variable to overwrite something
     for (let i = 0; i < ourTeam.members.length; i++) {
+        console.log(ourTeam.members[i].codingLevel);
         let tmplvl = ourTeam.members[i].codingLevel;
         ourTeam.members[i].codingLevel = { level: tmplvl, seniority: "" };
             if (ourTeam.members[i].codingLevel.level >= 0 && ourTeam.members[i].codingLevel.level < 50) {
                 ourTeam.members[i].codingLevel.seniority = "junior";
             }
-        ...
+        console.log(ourTeam.members[i].codingLevel);
     }
-    ==> ourTeam={...,members[{...,codingLevel{level:10,seniority:junior}},{...,codingLevel{level:20,seniority:junior}}...]};
-    */
 
-    /*  age taking month and day into account
+    //age taking month and day into account
+    const currentyear = new Date().getFullYear();
+    const currentmonth = new Date().getMonth();
+    const currentday = new Date().getDay();
+    let averageAge = 0;
+    let averageCodingLevel = 0;
     for (let i = 0; i < ourTeam.members.length; i++) {
         if (ourTeam.members[i].birthday.month < currentmonth) {
             averageAge = averageAge + Math.floor(((currentyear - ourTeam.members[i].birthday.year) / ourTeam.members.length));
@@ -138,9 +163,9 @@
             averageAge = averageAge + ((currentyear - ourTeam.members[i].birthday.year - 1) / ourTeam.members.length);
         }
     }
-    */
+    console.log("average age: ",averageAge);
 
-    /*  min, max algorithm
+    //min, max algorithm
     let youngest = ourTeam.members[0];
     let oldest = ourTeam.members[0];
     for (let i = 0; i < ourTeam.members.length; i++) {
@@ -151,18 +176,12 @@
             oldest = ourTeam.members[i];
         }
     }
-    let youngestMember = youngest.name;
-    let oldestMember = oldest.name;
-    */
+    console.log("Youngest:",youngest.name,", Oldest:",oldest.name);
 
-    /*  if it is a key in the object, ++ the value of that key, else add as new key
-    if ([ourTeam.members[i].favourites.favMovies[j].genre[k]] in commonGenres) {
-        commonGenres[ourTeam.members[i].favourites.favMovies[j].genre[k]]++;
+    //if it is a key in the object
+    if("name" in ourTeam.members[0]){
+        console.log("'name' is a key of the object 'ourTeam.members[0]', its value is:",ourTeam.members[0].name);
     }
-    else {
-        commonGenres[ourTeam.members[i].favourites.favMovies[j].genre[k]] = 1;
-    }
-    */
 
 }
 /*
