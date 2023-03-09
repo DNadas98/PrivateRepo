@@ -124,7 +124,8 @@
 
     //Abbreviate a Two Word Name
     function abbrevName(name){
-        return (name.split(" ")[0][0]+"."+name.split(" ")[1][0]).toUpperCase();
+        //return (name.split(" ")[0][0]+"."+name.split(" ")[1][0]).toUpperCase();
+        return (name.split(" ").map(i=>i[0].toUpperCase())).join(".");
     }
     console.log(abbrevName("daniel nadas"));
     //.map(): Convert number to reversed array of digits
