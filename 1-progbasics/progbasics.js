@@ -285,6 +285,50 @@
 //03/02. Function as an argument
 {
     console.log("\n\n03/02. Function as an argument");
+    //copied data from https://github.com/CodecoolGlobal/my-top-4-movies-javascript-DNadas98
+    let favMovies=[
+        {
+            title:"The Godfather",
+            year:1972,
+            rating:9.2,
+            description:"The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.",
+        },
+        {
+            title:"Memento",
+            year:2000,
+            rating:8.4,
+            description:"A man with short-term memory loss attempts to track down his wife's murderer.",
+        },
+        {
+            title:"The Matrix",
+            year:1999,
+            rating:8.7,
+            description:"When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
+        },
+        {
+            title:"Fight Club",
+            year:1999,
+            rating:8.8,
+            description:"An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
+        }
+    ];
+    //map, forEach simplest form
+    console.log("\n1. forEach, map:\n");
+    function logTitles(p){//map
+        return p.map(q=>q.title);
+    }
+    function logTitles2(p){///forEach
+        let asd="";
+        p.forEach(q=>(asd+=q.title+"\n"));
+        return asd;
+    }
+    console.log(logTitles(favMovies),"\n",logTitles2(favMovies));
+    //Object.values, ..., key in object
+    let asdfg={a:"b",c:"d",e:"f"};
+    console.log(Object.values(asdfg).length); //display each value of each key in an object (or something)
+    console.log("a" in asdfg);    //true if it's a key in the object, false if not
+    let asd=[0,2,5,7,3];
+    console.log(...asd);    //expand object
 }
 /*
     https://journey.study/v2/learn/courses/252/modules/10952/units/11
