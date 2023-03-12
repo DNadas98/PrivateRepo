@@ -35,5 +35,5 @@ fs.writeFile(("./files/reply2.txt"),"Text written in the file",(err)=>{
 
 //exit on uncaught errors
 process.on("uncaughtException",err=>{
-  console.error(`Uncaught error:${err}`)
+  console.error(`Uncaught error:${err}`);
 });

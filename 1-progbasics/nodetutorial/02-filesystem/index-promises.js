@@ -20,10 +20,10 @@ const fileOps=async()=>{
   } catch(err){
     console.error(err);
   }
-}
+};
 
 fileOps();
 //exit on uncaught errors
 process.on("uncaughtException",err=>{
-  console.error(`Uncaught error:${err}`)
+  console.error(`Uncaught error:${err}`);
 });
