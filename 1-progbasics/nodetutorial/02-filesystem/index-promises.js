@@ -21,7 +21,6 @@ const fileOps=async()=>{
     console.error(err);
   }
 };
-
 fileOps();
 //exit on uncaught errors
 process.on("uncaughtException",err=>{
