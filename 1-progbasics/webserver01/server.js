@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 
-const app = express();
+const app = express();  //creates express app
 
 function getFile(filestr,myCallback,ress) {
   fs.readFile(filestr, "utf8", (err, data) => {
@@ -27,11 +27,10 @@ function setFile(filestr,arr) {
 }
 
 //setFile('./proba.json',JSON.stringify(strarr));
- 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
- 
-app.get('/', (req, res) => {
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
+
+app.get('/', (req, res) => {  //
   //res.sendFile(__dirname+'/index.html');
   getFile('./probaread.json',callBackReadFile,res);
 //  res.send(strarr2);
@@ -48,7 +47,7 @@ app.get('/set', (req, res) => {
   res.send(strarr);
 });
 
-/* 
+/*
 app.post('/login', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
