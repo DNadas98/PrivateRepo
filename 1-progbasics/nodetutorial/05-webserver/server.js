@@ -5,15 +5,16 @@
 //import common core modules
 const http=require("http");
 const fs=require("fs");
-const path=require("path");//!
 const fsPromises=require("fs").promises;
+const path=require("path");//!
 //events
 /*
 const logEvents=require("./logEvents"); //custom module
 const EventEmitter=require("events"); //import events
 class Emitter extends EventEmitter{}
 //initialize object
-const myEmitter=new Emitter();*/
+const myEmitter=new Emitter();
+*/
 //set port
 const PORT=process.env.PORT || 3000;
 //
