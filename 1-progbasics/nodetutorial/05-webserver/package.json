@@ -1,11 +1,11 @@
 {
-  "name": "04-events",
+  "name": "05-webserver",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "author": "Daniel Nadas",
   "license": "ISC",

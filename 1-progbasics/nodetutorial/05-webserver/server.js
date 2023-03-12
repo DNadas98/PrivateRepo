@@ -5,7 +5,7 @@ class MyEmitter extends EventEmitter{}
 
 //initialize object
 const myEmitter=new MyEmitter();
-//listener for the log event
+//add listener for the log event
 myEmitter.on("log",(msg)=>logEvents(msg));
 setTimeout(()=>{
   //Emit event
