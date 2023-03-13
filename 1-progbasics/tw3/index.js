@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-unused-expressions */
 let board = []; //define ai board
 let ownBoard = []; //define player board
 let gamePhase={phase:"placement",clicks:0};  /*game phases:
@@ -85,7 +83,7 @@ function handleClick(data) {
 
   /*count the enemy ships --> allowed clicks for the player at placement phase*/
   let allowedClicks=0;
-  console.log("ai board",board);
+  console.log("ai board:",board);
   for(let i=0;i<board.length;i++){
     for(let j=0;j<board[i].length;j++){
       if(board[i][j]==="o"){
@@ -104,13 +102,13 @@ function handleClick(data) {
         ?allowed to false
         :do nothing*/
   /* direction:up */
-  ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
-    ?allowedCell=false
-    :data.x.charCodeAt(0)-65===0
-      ?allowedCell=true //'do nothing'
-      :ownBoard[data.x.charCodeAt(0)-65-1][data.y]==="p"
-        ?allowedCell=false
-        :allowedCell=true; //'do nothing'
+  (ownBoard[data.x.charCodeAt(0)-65][data.y]==="p")
+    ?(allowedCell=false)
+    :(data.x.charCodeAt(0)-65===0)
+      ?(allowedCell=true)
+      :(ownBoard[data.x.charCodeAt(0)-65-1][data.y]==="p")
+        ?(allowedCell=false)
+        :(allowedCell=true);
   /* direction:down */
   ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
     ?allowedCell=false
