@@ -135,23 +135,25 @@ function handleClick(data) {
       :ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
         ?allowedCell=false
         :allowedCell=true;
-  console.log("allowedClicks",allowedClicks,"allowed cell",allowedCell,"click",data);
+  console.log("allowedClicks:",allowedClicks,"\nallowedCell:",allowedCell,"\ndata:",data);
 
   /*place player ships*/
-  if(gamePhase.phase==="placement"&&gamePhase.clicks<=allowedClicks-1){
-    ownBoard[data.x.charCodeAt(0)-65][data.y]="p";/*A ascii: 65-->A=0,B=1...*/
-    gamePhase.clicks+=1;
-  }
-  else if(gamePhase.phase==="placement"&&gamePhase.clicks===allowedClicks){
-    gamePhase.phase="shooting";
-    gamePhase.clicks=1;
-  }
-  else{
-    gamePhase.clicks+=1;
+  if(allowedCell===true){
+    if(gamePhase.phase==="placement"&&gamePhase.clicks<=allowedClicks-1){
+      ownBoard[data.x.charCodeAt(0)-65][data.y]="p";/*A ascii: 65-->A=0,B=1...*/
+      gamePhase.clicks+=1;
+    }
+    else if(gamePhase.phase==="placement"&&gamePhase.clicks===allowedClicks){
+      gamePhase.phase="shooting";
+      gamePhase.clicks=1;
+    }
+    else{
+      gamePhase.clicks+=1;
+    }
   }
   displayBoard({boardnumber: 2,board: ownBoard});/**/
-  console.log("phase:",gamePhase.phase,"clicks:",gamePhase.clicks,"data:",data);
-  console.log("ownboard",ownBoard);
+  console.log("\ngamePhase.phase:",gamePhase.phase,"\ngamePhase.clicks:",gamePhase.clicks);
+  console.log("\nownBoard",ownBoard);
 }
 
 /*reset both boards*/
