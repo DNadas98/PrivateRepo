@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!--browser falls back to older html version without this-->
+<!--
+  https://www.youtube.com/watch?v=G3e-cpL7ofc
+  CSS: Cascading Style Sheets
+  2. CSS Basics, 3. Hovers, Transitions, Shadows
+-->
+<html>
+  <head>
+   <title>
+    Buttons example
+   </title>
+   <link rel="stylesheet" href="./css/buttons.css"> <!--void element: no closing tag!-->
+   <script defer src="./js/example.js"> //https://www.w3schools.com/tags/att_script_defer.asp
+     //call js file
+   </script>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <a href="./index.html">Home</a>
+        <a href="./buttons.html">Buttons html</a>
+        <a href="./text.html">Text html</a>
+        <a href="./new-page.html">New Page</a>
+      </li>
+    </ul>
+    <div class="div-buttons">
+      <button class="subscribe-button" onclick="exampleJsFunction();">
+        SUBSCRIBE
+      </button>
+      <button class="join-button">
+        JOIN
+      </button>
+      <button class="tweet-button">
+        TWEET
+      </button>
+    </div>
+    <div id="example">
+      text to be replaced by pressing subscribe button
+      <script>
+        let str=document.getElementById("example").innerHTML;
+      </script>
+    </div>
+  </body>
+</html>
