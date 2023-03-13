@@ -94,17 +94,15 @@ function handleClick(data) {
     }
   }
   console.log("allowedClicks",allowedClicks);
-/*check cell according to placement rules --> allowed cells at placement phase*/
-/*
+  let allowedCell=true;
+  /*check cell according to placement rules --> allowed cells at placement phase
   did we click on p
     ?set allowed to false
     :are we at the edge from this direction
       ?do nothing
-      :is this direction +1 p
+      :is this direction+1 p
         ?allowed to false
-        :do nothing
-*/
-  let allowedCell=true;
+        :do nothing*/
   /* direction:up */
   ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
     ?allowedCell=false
@@ -137,8 +135,6 @@ function handleClick(data) {
       :ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
         ?allowedCell=false
         :allowedCell=true;
-
-  /**/
   console.log("allowedClicks",allowedClicks,"allowed cell",allowedCell,"click",data);
 
   /*place player ships*/
