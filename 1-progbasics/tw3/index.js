@@ -75,6 +75,7 @@ function handleClick(data) {
   displayTextMessage(data.x + data.y + data.clickType);
 }
 
+/*reset both boards*/
 function resetGame() {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
