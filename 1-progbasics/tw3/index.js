@@ -1,7 +1,7 @@
 let board = []; //define ai board
 let ownBoard = []; //define player board
 
-//data parsing input: size:4,s:{s1:a1,s2:c4}
+//data parsing input parameter data: size:4,s:{s1:a1,s2:c4}
 function getSettings(data){
   let [size, ...ste] = data.split(',') // ['size:4', 's:{s1:a1,s2:c4}']
   let steps = ste.join(',')
@@ -12,14 +12,14 @@ function getSettings(data){
   steps = steps.split(',') // ['s1:a1', 's2:c4']
 
   let stepsArray = getStepsByArray(steps)
-  displayTextMessage(data,"black")
-  displayMessage("size:"+size+", ai ships:"+JSON.stringify(stepsArray),"black")
+  displayTextMessage(data,"black");
+  displayMessage("size:"+size+", ai ships:"+JSON.stringify(stepsArray),"black");
 
   generateMap(size, stepsArray) //stepsArray-->ships
 }
 
 function getStepsByArray(array){
-  let obj = {}
+  let obj = [];  /*arr=[] instead of obj={}?*/
   for(let i = 0; i< array.length; i++){
     let splited = array[i].split(':')[1] // ['s1:a1', 's2:c4'] -> ['s1' ,'a1', 's2', 'c4']
     let data = splited.split('') // ['a1', 'c4'] -> ['a', '1']
@@ -35,10 +35,8 @@ function getStepsByArray(array){
   console.log(obj)
   return obj
 }
-//data parsing results: obj=[{column:0,row:0},{column:3},row:2]; size=4
-//obj-->stepsArray-->ships
-
-//ai board, ship placement:
+//data parsing results: obj=[{column:0,row:0},{column:3},row:2] (getStepsByArray); size=4 (getSettings)
+// --> generateMap input size, ships for ai board, ship placement:
 function generateMap(size, ships){ //stepsArray-->ships
   //clear the boards
   board = []
@@ -72,6 +70,8 @@ function selectGame(data) {
 }
 
 function handleClick(data) {
+  //input parameter: data: x:"B",y:"3",clickType:"left"
+  console.log(data);
   displayTextMessage(data.x + data.y + data.clickType);
 }
 
@@ -79,9 +79,11 @@ function resetGame() {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       board[i][j] = "";
+      ownBoard[i][j] = "";
     }
   }
   displayBoard({ boardnumber: 1, board: board });
+  displayBoard({ boardnumber: 2, board: ownBoard });
 }
 
 function aiShoot(data) {
