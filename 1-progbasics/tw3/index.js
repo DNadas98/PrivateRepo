@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 let board = []; //define ai board
 let ownBoard = []; //define player board
 let gamePhase={phase:"placement",clicks:0};  /*game phases:
@@ -102,37 +103,37 @@ function handleClick(data) {
         ?allowed to false
         :do nothing*/
   /* direction:up */
-  (ownBoard[data.x.charCodeAt(0)-65][data.y]==="p")
-    ?(allowedCell=false)
-    :(data.x.charCodeAt(0)-65===0)
-      ?(allowedCell=true)
-      :(ownBoard[data.x.charCodeAt(0)-65-1][data.y]==="p")
-        ?(allowedCell=false)
-        :(allowedCell=true);
+  ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
+    ?allowedCell=false
+    :data.x.charCodeAt(0)-65===0
+      ?undefined  //do nothing
+      :ownBoard[data.x.charCodeAt(0)-65-1][data.y]==="p"
+        ?allowedCell=false
+        :undefined;
   /* direction:down */
   ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
     ?allowedCell=false
     :data.x.charCodeAt(0)-65===ownBoard.length-1
-      ?allowedCell=true
+      ?undefined
       :ownBoard[data.x.charCodeAt(0)-65+1][data.y]==="p"
         ?allowedCell=false
-        :allowedCell=true;
+        :undefined;
   /* direction:left */
   ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
     ?allowedCell=false
     :data.y===0
-      ?allowedCell=true
+      ?undefined
       :ownBoard[data.x.charCodeAt(0)-65][data.y-1]==="p"
         ?allowedCell=false
-        :allowedCell=true;
+        :undefined;
   /* direction:right */
   ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
     ?allowedCell=false
     :data.y===ownBoard[ownBoard.length-1].length-1
-      ?allowedCell=true
+      ?undefined
       :ownBoard[data.x.charCodeAt(0)-65][data.y]==="p"
         ?allowedCell=false
-        :allowedCell=true;
+        :undefined;
   console.log("allowedClicks:",allowedClicks,"\nallowedCell:",allowedCell,"\ndata:",data);
 
   /*place player ships*/
