@@ -10,14 +10,15 @@ const path=require("path");//!
 //handle events https://nodejs.org/api/events.html#events_events
 const EventEmitter=require("events"); //import events
 const logEvents=require("./logEvents"); //my custom module
-class Emitter extends EventEmitter{}  
-const myEmitter=new Emitter();  //initialize object
-myEmitter.on("log",(msg,fileName)=>logEvents(msg,fileName)); //add listener for the log event
+class MyEmitter extends EventEmitter{}  //create the class
+const myEmitter=new MyEmitter();  //initialize object
+//add listener for the log event
+myEmitter.on("log",(msg,fileName)=>logEvents(msg,fileName));
 
 //set the port
 const PORT=process.env.PORT || 3000;
 
-//
+//serve files
 const serveFile=async(filePath,contentType,response)=>{
   try{
     const rawData=await fsPromises.readFile(filePath,
@@ -38,7 +39,8 @@ const serveFile=async(filePath,contentType,response)=>{
         :data);
   } catch(err){
     console.log(err);
-    myEmitter.emit("log",`${err.name}: ${err.message}`,"errLog.txt"); //Emit event
+    //emit error event to errLog.txt
+    myEmitter.emit("log",`${err.name}: ${err.message}`,"errLog.txt");
     response.statusCode=500;
     response.end();
   }
@@ -48,8 +50,9 @@ const serveFile=async(filePath,contentType,response)=>{
 const server=http.createServer((req,res)=>{
   console.log(req.url,req.method);  //log request and request method
   //GET: browser requests site from server
-  //other html methods: PUT:browser sends data to server in the url, POST: browser sends data not to the url
-  myEmitter.emit("log",`${req.url}\t${req.method}`,"reqLog.txt"); //Emit event
+    //other html methods: PUT:browser sends data to server in the url, POST: browser sends data not to the url
+  //Emit request event
+  myEmitter.emit("log",`${req.url}\t${req.method}`,"reqLog.txt");
 
   const extension=path.extname(req.url);  //get extension name
   //define content types
@@ -88,14 +91,14 @@ const server=http.createServer((req,res)=>{
           :path.join(__dirname,req.url);  //look in another folder
   if(!extension&&req.url.slice(-1)!=="/") filePath+=".html";  //makes .html ext. not required in the browser
 
-  //check to see if the file exists
+//check to see if the file exists
 const fileExists=fs.existsSync(filePath);
 if(fileExists){
-  //serve the file, http response
+  //serve the file, content type and http response
   serveFile(filePath,contentType,res);
 }
 else{
-  //handle the 301 redirects
+  //handle the 301 (Moved Permanently)
   switch(path.parse(filePath).base){
     case "old-page.html":
       res.writeHead(301,{"Location":"/new-page.html"}); //redirect from old-page to new-page
@@ -105,7 +108,7 @@ else{
       res.writeHead(301,{"Location":"/"});  //redirect to root
       res.end();
       break;
-    default:  //handle the 404
+    default:  //handle the 404 (Not Found)
       serveFile(path.join(__dirname,"views","404.html"),"text/html",res);
 
   }
